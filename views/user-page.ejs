@@ -1,0 +1,83 @@
+<section id="inner-headline">
+    <div class="container">
+      <div class="row">
+        <div class="span12">
+          <div class="inner-heading">
+            <h2>유저 페이지</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+<section id="content">
+<div class="container" id="userinfo-container">
+<!-- Portfolio Projects -->
+<div class="row">
+<div class="span12">
+    <h4 class="heading">개인정보 유출을 조심하세요</h4>
+    <table style="margin-left: auto; margin-right: auto;">
+        <tbody>
+            <tr>
+                <td><h6 class="span3">아이디: </h6></td>
+                <td><input type="text" v-model="userId" disabled/></td>            
+            </tr>
+            <tr>
+                <td><h6 class="span3">회원타입: </h6></td>
+                <td><label>{{ userType }}</label></td>            
+            </tr>
+            <tr>
+                <td><h6 class="span3">지갑키: </h6></td>
+                <td><label>{{ walletKey }}</label></td>            
+            </tr>    
+        </tbody>
+    </table>
+   <center>
+       <button class="btn btn-large btn-theme btn-rounded" v-on:click="modifyUserInfo">회원정보변경</button>
+       <button class="btn btn-large btn-theme btn-rounded" v-on:click="logout">로그아웃</button>
+    </center>        
+</div>
+</div>
+<!-- End Portfolio Projects -->
+<!-- divider -->
+<div class="row">
+<div class="span12">
+    <div class="solidline">
+    </div>
+</div>
+</div>
+</section>
+
+<script type="text/javascript">
+let userInfoVue = new Vue({
+    el: "#userinfo-container",
+    data: {
+        userId: '',
+        userType: '',
+        walletKey: ''
+    },
+    mounted: function(){
+        axios.post('/userinfo')
+            .then((result) => {
+                console.log(result);
+                userInfoVue.userId = result.data.id;
+                userInfoVue.userType = (result.data.type === "agency")? "기관회원":"일반회원";
+                userInfoVue.walletKey = result.data.wallet;
+            }).catch((ex) => {
+                alert('서버에 에러가 발생하였습니다.');
+            });
+    },
+    methods: {
+        modifyUserInfo: function(){
+
+        },
+        logout: function() {
+            axios.get('/logout')
+                .then((result) => {
+                    location.href = "/";
+                }).catch((ex) => {
+                    alert('에러가 발생하였습니다.');
+                });
+        }
+    }
+})
+</script>

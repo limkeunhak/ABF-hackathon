@@ -1,0 +1,70 @@
+<section id="inner-headline">
+    <div class="container">
+      <div class="row">
+        <div class="span12">
+          <div class="inner-heading">
+            <h2>블록체인을 혈통서 서비스 Cuddling에 오신것을 환영합니다.</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+<section id="content">
+<div class="container" id="login-container">
+<!-- Portfolio Projects -->
+<div class="row">
+<div class="span12">
+    <h4 class="heading">로그인을 위해 아이디와 패스워드를 입력하세요</h4>
+    <table style="margin-left: auto; margin-right: auto;">
+        <tbody>
+            <tr>
+                <td><h6 class="span3">아이디: </h6></td>
+                <td><input type="text" v-model="userId"/></td>            
+            </tr>
+            <tr>
+                <td><h6 class="span3">패스워드: </h6></td>
+                <td><input type="password" v-model="password"/></td>            
+            </tr>
+        </tbody>
+    </table>
+   <center>
+       <button class="btn btn-large btn-theme btn-rounded" v-on:click="login">로그인</button>
+       <button class="btn btn-large btn-theme btn-rounded">아이디/비밀번호 찾기</button>
+    </center>        
+</div>
+</div>
+<!-- End Portfolio Projects -->
+<!-- divider -->
+<div class="row">
+<div class="span12">
+    <div class="solidline">
+    </div>
+</div>
+</div>
+</section>
+
+<script type="text/javascript">
+let loginVue = new Vue({
+    el: "#login-container",
+    data: {
+        userId: '',
+        password: '',
+    },
+    mounted: function(){
+
+    },
+    methods: {
+        login: function(){
+            // 등록
+            axios.post('/login', {
+                id: this.userId,
+                password: this.password
+            }).then(function(result){
+                location.href = '/';
+            }).catch(function(ex){
+                alert('에러가 발생하였습니다. 관리자에게 문의하세요.');
+            });
+        }
+    }
+})
+</script>

@@ -7,6 +7,7 @@ const cookieParser = require('cookie-parser');
 const http = require('http');
 const expressLayouts = require('express-ejs-layouts');
 
+const session = require('express-session');
 const indexRouter = require('./routes/index');
 const introRouter = require('./routes/introRouter');
 const registRouter = require('./routes/registRouter');
@@ -14,14 +15,6 @@ const inquiryRouter = require('./routes/inquiryRouter');
 const additionalServiceRouter = require('./routes/additionalServiceRouter');
 const sellingRouter = require('./routes/sellingRouter');
 const companyRouter = require('./routes/companyRouter');
-const redis = require('redis');
-const client = redis.createClient();
-
-// Set test users
-client.set('user1', 'user1');
-client.set('user2', 'user2');
-client.set('user3', 'user3');
-client.set('user4', 'user4');
 
 const app = express();
 
@@ -37,10 +30,12 @@ app.set('views', [
 ]);
 app.set('view engine', 'ejs');
 
+
 //app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(session({ secret: 'key', resave: true, saveUninitialized: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(expressLayouts);
 app.set('layout extractScripts', true);

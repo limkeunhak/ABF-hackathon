@@ -1,7 +1,13 @@
-const AGENCY_USERS = {
-    'agency1':'agency1',
-    'agency2':'agency2',
-    'agency3':'agency3',
+let users = {};
+
+users.AGENCY = {
+    id:'agency1',
+    password: 'agency1'
 }
 
-module.exports = AGENCY_USERS;
+users.GENERAL = [
+    { id:'user1', password: 'user1'}, 
+    { id:'user2', password: 'user2'}
+];
+
+module.exports = users;

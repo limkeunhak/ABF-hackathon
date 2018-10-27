@@ -11,7 +11,11 @@ registController.page1 = (req, res) => {
 };
 
 registController.registPetPage = (req, res) => {
-    res.render('regist-pet');
+    if(req.session.user){
+        res.render('regist-pet');
+    }else{
+        res.redirect('/login');
+    }
 };
 
 

@@ -1,8 +1,6 @@
 "use strict"
 
-const redis = require('redis');
 const mailSender = require('../modules/mailSender');
-const client = redis.createClient();
 const dnaGenerator = require('../modules/dnaGenerator');
 const security = require('../modules/security');
 
@@ -13,7 +11,15 @@ companyController.intro = (req, res) => {
 };
 
 companyController.registPage = (req, res) => {
-    res.render('company-regist');
+    if(req.session.user){
+        if(req.session.user.type === 'agency'){
+            res.render('company-regist');
+        }else{
+            res.redirect('/');
+        }
+    }else{
+        res.redirect('/login');
+    }
 };
 
 companyController.getRandomDNA = (req, res) => {
