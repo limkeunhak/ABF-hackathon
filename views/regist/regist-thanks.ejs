@@ -1,0 +1,70 @@
+<section id="inner-headline">
+    <div class="container">
+      <div class="row">
+        <div class="span12">
+          <div class="inner-heading">
+            <h2>블록체인에 혈통정보가 안전하게 보관되었습니다.</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+<section id="content">
+<div class="container" id="company-regist-container">
+<!-- Portfolio Projects -->
+<div class="row">
+<div class="span12">
+    <h4 class="heading">블록체인 혈통서를 작성해주셔서 감사합니다.</h4>
+    <div class="row span12 h5">
+        해당 반려견의 혈통서는 저희 홈페이지에서 휴대폰 혹은 이메일로 발송된 등록번호(혹은 비문)을 통해 조회하실 수 있습니다.<br>
+        <블록체인 반려견 혈통서 서비스>는 더 나은 반려견 생태계를 위해 노력하겠습니다.<br>
+        문의사항은 아래 링크를 통해 전달하실 수 있습니다.<br>
+    </div>
+    <div class="row span12 h6">
+        <a href="#">문의사항 페이지</a><br>
+    </div>
+    <div class="row span12 h5">
+        감사합니다.
+    </div>
+</div>
+</div>
+<!-- End Portfolio Projects -->
+<!-- divider -->
+<div class="row">
+<div class="span12">
+    <div class="solidline">
+    </div>
+</div>
+</div>
+</section>
+
+<script type="text/javascript">
+let companyRegistVue = new Vue({
+    el: "#company-regist-container",
+    data: {
+        userId: '',
+        dogName: '',
+        dogBirth: '',
+        dogColor: '1',
+        dogDNAInfo: '',
+        ownerName: '',
+        ownerEmail: '',
+        isBreeder: true,
+        isOwner: true,
+        hasFamily: false,
+        hasMicroChip: false,
+        useService: false,
+        numMicroChip: '',
+        FamilyDogRegNo: ''
+    },
+    mounted: function(){
+
+    },
+    methods: {
+        registMyDog: function(){
+            // 등록
+            location.href = "/regist/thanks";
+        }
+    }
+})
+</script>

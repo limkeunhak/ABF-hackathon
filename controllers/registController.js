@@ -10,8 +10,13 @@ registController.page1 = (req, res) => {
     res.render('page1');
 };
 
-registController.page2 = (req, res) => {
-    res.render('page2');
+registController.registPetPage = (req, res) => {
+    res.render('regist-pet');
+};
+
+
+registController.registThanksPage = (req, res) => {
+    res.render('regist-thanks');
 };
 
 module.exports = registController;

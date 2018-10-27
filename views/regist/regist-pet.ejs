@@ -1,0 +1,147 @@
+<section id="inner-headline">
+    <div class="container">
+      <div class="row">
+        <div class="span4">
+          <div class="inner-heading">
+            <h2>반려견 혈통 등록</h2>
+          </div>
+        </div>
+        <div class="span8">
+          <ul class="breadcrumb">
+            <li><a href="#"><i class="icon-home"></i></a><i class="icon-angle-right"></i></li>
+            <li><a href="#">혈통정보 등록</a><i class="icon-angle-right"></i></li>
+            <li class="active">반려견 혈통 등록</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+<section id="content">
+<div class="container" id="company-regist-container">
+<!-- Portfolio Projects -->
+<div class="row">
+<div class="span12">
+    <h4 class="heading">반려견 등록 정보 입력</h4>
+    <div class="row span12">
+            <h6>반려견 이름 입력</h6>
+            <input type="text" v-model="dogName"/>
+    </div>
+    <div class="row span12">
+        <h6>반려견 생년월일 입력</h6>
+        <input type="date" v-model="dogBirth"/>
+    </div>
+    <div class="row span12">
+        <h6>반려견 모색(털 색깔) 을 입력해 주세요</h6>
+        <select v-model="dogColor">
+            <option value="0">붉은색</option>
+            <option value="1">검정색</option>
+            <option value="2">파란색</option>
+            <option value="3">초록색</option>
+            <option value="4">황색</option>
+            <option value="5">갈색</option>
+        </select>
+    </div>
+    <div class="row span12">
+        <h6>귀하께서는 해당견의 번식자이십니까?</h6>
+        <div class="form-inline">
+            <input type="radio" id="breeder-yes" value="true" v-model="isBreeder">
+            <label for="breeder-yes">네</label>
+            <input type="radio" id="breeder-no" value="false" v-model="isBreeder">
+            <label for="breeder-no">아니오</label>
+        </div>
+    </div>
+    <div class="row span12">
+        <h6>귀하께서는 해당견의 소유주이십니까?</h6>
+        <p>* 소유자 변경 시 본 서비스에 변경사항을 입력하셔야 혈통서의 효력이 유지됩니다.</p>
+        <div class="form-inline">
+            <input type="radio" id="owner-yes" value="true" v-model="isOwner">
+            <label for="owner-yes">네</label>
+            <input type="radio" id="owner-no" value="false" v-model="isOwner">
+            <label for="owner-no">아니오</label>
+        </div>
+    </div>
+    <div class="row span12">
+        <h6>마이크로칩의 일련번호를 적어주세요</h6>
+        <div class="form-inline">
+            <input type="radio" id="micro-no" value="false" v-model="hasMicroChip">
+            <label for="micro-no">마이크로칩을 이식하지 않았습니다</label><br>
+            <input type="radio" id="micro-yes" value="true" v-model="hasMicroChip">
+            <label for="micro-yes">마이크로칩을 이식하였습니다. (아래 폼에 일련번호 기입)</label>
+        </div>
+        일련번호: <input type="text" v-model="numMicroChip"/>
+    </div>
+    <div class="row span12">
+        <h6>해당견의 부,모,자, 기타 혈연관계의 견을 소유하고 계십니까?</h6>
+        <div class="form-inline">
+            <input type="radio" id="family-yes" value="false" v-model="hasFamily">
+            <label for="family-yes">예</label><br>
+            <input type="radio" id="family-no" value="true" v-model="hasFamily">
+            <label for="family-no">아니오 (이후에 DNA 검사를 통해 혈연관계를 추가하실 수 있습니다)</label>
+        </div>
+    </div>
+    <div class="row span12">
+        <h6>해당견의 부,모,자, 기타 혈연관계의 견이 블록체인 혈통서 서비스에 등록되어 있습니까?</h6>
+        <div class="form-inline">
+            <input type="radio" id="use-yes" value="false" v-model="useService">
+            <label for="use-yes">예 (아래 폼에 관계와 등록번호를 적어주시면 DNA 검사결과 대조 후 해당 혈연관계로 인정됩니다.)</label><br>
+            <input type="radio" id="use-no" value="true" v-model="useService">
+            <label for="use-no">아니오 (혈연관계 견의 DNA 검사를 신청하시고 혈통서를 작성해 주십시오.)</label>
+        </div>
+        등록번호: <input type="text" v-model="FamilyDogRegNo"/>
+        관계: <select>
+            <option>부</option>
+            <option>모</option>
+            <option>자</option>
+            <option>기타</option>
+        </select>
+
+    </div>
+    <div class="row span12">
+        <h6>반려견의 독쇼 수상내역, 동물병원 검진내역 기록, 블록체인 펫보험, 블록체인상 반려견 거래 서비스는 곧 추가될 예정입니다.</h6>
+    </div>
+    <div class="row span12">
+        <h6>지금까지 작성하신 정보는 DNA 검사를 통해 이미 생성된 정보와 함께 블록체인에 기록됩니다.</h6>
+    </div>
+    <button class="btn btn-large btn-theme btn-rounded" v-on:click="registMyDog">등록하기</button>        
+</div>
+</div>
+<!-- End Portfolio Projects -->
+<!-- divider -->
+<div class="row">
+<div class="span12">
+    <div class="solidline">
+    </div>
+</div>
+</div>
+</section>
+
+<script type="text/javascript">
+let companyRegistVue = new Vue({
+    el: "#company-regist-container",
+    data: {
+        userId: '',
+        dogName: '',
+        dogBirth: '',
+        dogColor: '1',
+        dogDNAInfo: '',
+        ownerName: '',
+        ownerEmail: '',
+        isBreeder: true,
+        isOwner: true,
+        hasFamily: false,
+        hasMicroChip: false,
+        useService: false,
+        numMicroChip: '',
+        FamilyDogRegNo: ''
+    },
+    mounted: function(){
+
+    },
+    methods: {
+        registMyDog: function(){
+            // 등록
+            location.href = "/regist/thanks";
+        }
+    }
+})
+</script>
