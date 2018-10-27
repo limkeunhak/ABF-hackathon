@@ -12,7 +12,7 @@ security.encryptAES = (key, plain) => {
     return cipherText;
 };
 
-security.dicryptAES = (pub_key, cipherText) => {
+security.dicryptAES = (key, cipherText) => {
     let encryptedBytes = aesjs.utils.hex.toBytes(cipherText);
     let aesCtr = new aesjs.ModeOfOperation.ctr(key);
     let decryptedBytes = aesCtr.decrypt(encryptedBytes);
