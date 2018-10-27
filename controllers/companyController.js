@@ -15,7 +15,6 @@ companyController.intro = (req, res) => {
 };
 
 companyController.registPage = (req, res) => {
-    console.log(req.session.user);
     if(req.session.user){
         if(req.session.user.type === 'agency'){
             res.render('company-regist');
@@ -36,7 +35,6 @@ companyController.getRequestUser = (req, res) => {
     client.keys(req.session.user.id + '_*', function(err, keys){
         if (err) return console.log(err);
         if(keys){
-            console.log(keys);
             async.map(keys, function(key, cb) {
                 client.get(key, function (error, value) {
                      if (error) return cb(error);
@@ -45,7 +43,6 @@ companyController.getRequestUser = (req, res) => {
                  }); 
              }, function (error, results) {
                 if (error) return console.log(error);
-                console.log(results);
                 res.status(200).json({data:results});
              });
         }
