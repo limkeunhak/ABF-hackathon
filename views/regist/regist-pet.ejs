@@ -136,9 +136,9 @@ let companyRegistVue = new Vue({
         fromUrlText: '',
     },
     mounted: function(){
-        let fromUrl = <% fromUrl %>;
+        let fromUrl = <%- fromUrl %>;
         if(fromUrl == true){
-            let userId = <% userId %>;
+            let userId = <%- userId %>;
             alert(userId + '님 반갑습니다! 귀하의 DNA는 블록체인에 소중히 보관되었습니다.');
         }
     },
