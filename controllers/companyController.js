@@ -21,6 +21,12 @@ companyController.getRandomDNA = (req, res) => {
 }
 
 companyController.registDNA = (req, res) => {
+    // bongki
+    // req.body = { userId: '', dna: ''}
+    // 나할꺼: userId로 데이터베이스 조회해서 이메일 받고
+    // 나할꺼: 유저정보 가져오고 pub 키 이메일 세팅하고
+    // 봉기할꺼: blockchain에 req.body.dna.toLowerCase() 를 업로드
+
     if(req.body){
         let mailTitle = req.body.userId + ' 회원님의 반려견 DNA 등록이 완료되었습니다.\n';
         let mailContents = '안녕하세요. 반려견 혈통관리 서비스 MUNGMUNG 입니다.\
