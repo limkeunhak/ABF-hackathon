@@ -1,7 +1,7 @@
 const nodemailer = require('nodemailer');
 const mailSender = {};
 
-mailSender.sendMail = (to, subject, text) => {    
+mailSender.sendMail = (to, subject, text, callback) => {    
     const transforter = nodemailer.createTransport({  
         service: 'Gmail',
         auth: {
@@ -18,12 +18,16 @@ mailSender.sendMail = (to, subject, text) => {
     };
 
     transforter.sendMail(mailOptions, function(error, response){
+        callback(error, response);
         if (error){
             console.log(error);
         } else {
             console.log("Message sent");
         }
         transforter.close();
+        if(res){
+            res.status(200);
+        }
     });    
 }
 

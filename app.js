@@ -1,21 +1,29 @@
 "use strict"
 
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-var http = require('http');
-var expressLayouts = require('express-ejs-layouts');
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const http = require('http');
+const expressLayouts = require('express-ejs-layouts');
 
-var indexRouter = require('./routes/index');
-var introRouter = require('./routes/introRouter');
-var registRouter = require('./routes/registRouter');
-var inquiryRouter = require('./routes/inquiryRouter');
-var additionalServiceRouter = require('./routes/additionalServiceRouter');
-var sellingRouter = require('./routes/sellingRouter');
+const indexRouter = require('./routes/index');
+const introRouter = require('./routes/introRouter');
+const registRouter = require('./routes/registRouter');
+const inquiryRouter = require('./routes/inquiryRouter');
+const additionalServiceRouter = require('./routes/additionalServiceRouter');
+const sellingRouter = require('./routes/sellingRouter');
+const companyRouter = require('./routes/companyRouter');
+const redis = require('redis');
+const client = redis.createClient();
 
-var app = express();
+// Set test users
+client.set('user1', 'user1');
+client.set('user2', 'user2');
+client.set('user3', 'user3');
+client.set('user4', 'user4');
+
+const app = express();
 
 // view engine setup
 app.set('views', [
@@ -24,7 +32,8 @@ app.set('views', [
   path.join(__dirname, 'views/intro'),
   path.join(__dirname, 'views/inquiry'),
   path.join(__dirname, 'views/additional-service'),
-  path.join(__dirname, 'views/selling')
+  path.join(__dirname, 'views/selling'),
+  path.join(__dirname, 'views/company')
 ]);
 app.set('view engine', 'ejs');
 
@@ -43,6 +52,7 @@ app.use('/regist', registRouter);
 app.use('/inquiry', inquiryRouter);
 app.use('/selling', sellingRouter);
 app.use('/additional-service', additionalServiceRouter);
+app.use('/company', companyRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -60,10 +70,10 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-var port = normalizePort(process.env.PORT || '3000');
+const port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
 
-var server = http.createServer(app);
+const server = http.createServer(app);
 
 server.listen(port);
 server.on('error', onError);

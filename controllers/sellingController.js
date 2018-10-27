@@ -1,6 +1,5 @@
 "use strict"
 
-const mailSender = require('../modules/mailSender');
 const dnaGenerator = require('../modules/dnaGenerator');
 
 let sellingController = {};
@@ -10,7 +9,6 @@ sellingController.main = (req, res) => {
 };
 
 sellingController.page1 = async (req, res) => {
-    //await mailSender.sendMail('jobong07@naver.com', '테스트 메일', '테스트 메일입니다');
     res.render('page1');
 };
 

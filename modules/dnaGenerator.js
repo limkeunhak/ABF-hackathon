@@ -18,4 +18,4 @@ dnaGen.generateRandomDNA = (size) => {
     return dna;
 };
 
-module.exports = dnaGen;
+module.exports = dnaGen;    
