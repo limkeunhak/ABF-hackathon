@@ -17,11 +17,11 @@ registController.page1 = (req, res) => {
 
 registController.registPetPage = (req, res) => {
     if(req.query.key){
-        console.log(security.decryptWithoutKey(req.query.key))
-        res.render('regist-pet');
+        let userId = security.decryptWithoutKey(req.query.key).split('_')[1];
+        res.render('regist-pet', { fromUrl:true, userId:userId });
     }
     else if(req.session.user){
-        res.render('regist-pet');
+        res.render('regist-pet', { fromUrl:false, userId:'' });
     }else{
         res.redirect('/login');
     }

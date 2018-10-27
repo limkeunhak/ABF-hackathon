@@ -132,10 +132,15 @@ let companyRegistVue = new Vue({
         hasMicroChip: false,
         useService: false,
         numMicroChip: '',
-        FamilyDogRegNo: ''
+        FamilyDogRegNo: '',
+        fromUrlText: '',
     },
     mounted: function(){
-
+        let fromUrl = <% fromUrl %>;
+        if(fromUrl == true){
+            let userId = <% userId %>;
+            alert(userId + '님 반갑습니다! 귀하의 DNA는 블록체인에 소중히 보관되었습니다.');
+        }
     },
     methods: {
         registMyDog: function(){
