@@ -73,6 +73,24 @@ security.decrypt = (key, data) => {
 
     return result;
 };
+
+let TMP_KEY="wiqopw122o01id";
+security.encryptWithoutKey = (data) => {
+    const cipher = crypto.createCipher('aes-256-cbc', TMP_KEY);
+    cipher.update(data, 'utf8', 'base64');
+    let result = cipher.final('base64');
+ 
+    return result;
+};
+
+security.decryptWithoutKey = (data) => {
+    const decipher = crypto.createDecipher('aes-256-cbc', TMP_KEY);
+    decipher.update(data, 'base64', 'utf8');
+    let result =  decipher.final('utf8'); 
+
+    return result;
+};
+
 security.testEncPub_DecPri = () => {
     let encmsg = security.encryptAESWithPublic(PUBKEY, SAMPLE_TEXT);
     console.log(encmsg);
