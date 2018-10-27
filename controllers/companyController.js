@@ -94,7 +94,7 @@ companyController.registDNA = (req, res) => {
                 \n회원님의 반려견 DNA가 등록되어 메일 드립니다.\
                 \n\n반려견 DNA 등록번호: ' + reg_number + '\
                 \n아래 링크를 통해 등록을 완료해주세요.\
-                \n\n링크: http://lamborghini.kr:3000/regist/pet?key=' + security.encryptWithoutKey(req.body.userInfo.agencyUserId + '_' + req.body.userInfo.generalUserId) + '\n\n저희 서비스를 이용해 주셔서 감사합니다. \nMUNGMUNG 드림';
+                \n\n링크: http://49.164.52.128:3000/regist/pet?key=' + security.encryptWithoutKey(req.body.userInfo.agencyUserId + '_' + req.body.userInfo.generalUserId) + '\n\n저희 서비스를 이용해 주셔서 감사합니다. \nMUNGMUNG 드림';
             mailSender.sendMail(req.body.userInfo.generalUserEmail, mailTitle, mailContents,
              (error, response) => {
                     res.status(200).json();
