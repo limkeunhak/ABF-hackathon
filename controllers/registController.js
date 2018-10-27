@@ -28,11 +28,14 @@ registController.registThanksPage = (req, res) => {
 };
 
 registController.registDnaPage = (req, res) => {
-    res.render('regist-dna');
+    if(req.session.user){
+        res.render('regist-dna');
+    }else{
+        res.redirect('/login');
+    }
 };
 
 registController.getAgencyList = (req, res) => {
-    let agencyList = [];
     client.keys( '*', function(err, keys){
         if (err) return console.log(err);
         if(keys){
@@ -58,6 +61,25 @@ registController.getAgencyList = (req, res) => {
                 res.status(200).json({data:deleteNull});
              });
         }
+    });
+};
+
+registController.registDna = (req, res) => {
+    client.get(req.session.user.id, function(err, reply){
+        let request = {
+            generalUserId: req.session.user.id,
+            agencyUserId: req.body.agencyUserId,
+            dogDna: '',
+            isDone: false,
+            tx: '',
+            email: reply.email,
+            regNo: '',
+            link: '',
+        };
+        
+        client.set(req.body.agencyUserId + '_' + req.session.user.id, JSON.stringify(request), function(err, reply){
+            res.status(200).json();
+        });    
     });
 };
 

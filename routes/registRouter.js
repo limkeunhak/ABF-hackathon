@@ -12,4 +12,6 @@ router.get('/dna', registController.registDnaPage);
 router.get('/thanks', registController.registThanksPage);
 router.get('/agencylist', registController.getAgencyList);
 
+router.post('/dna', registController.registDna);
+
 module.exports = router;

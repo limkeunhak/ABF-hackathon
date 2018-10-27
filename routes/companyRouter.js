@@ -8,6 +8,8 @@ var router = express.Router();
 router.get('/intro', companyController.intro);
 router.get('/regist', companyController.registPage);
 
+router.get('/user', companyController.getRequestUser);
+
 // 반려견 dna 조회 (random dna 반환)
 router.get('/userdna', companyController.getRandomDNA);
 

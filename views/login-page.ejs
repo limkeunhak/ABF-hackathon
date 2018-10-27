@@ -29,7 +29,7 @@
     </table>
    <center>
        <button class="btn btn-large btn-theme btn-rounded" v-on:click="login">로그인</button>
-       <button class="btn btn-large btn-theme btn-rounded">아이디/비밀번호 찾기</button>
+       <button class="btn btn-large btn-theme btn-rounded" v-on:click="signup">회원가입</button>
     </center>        
 </div>
 </div>
@@ -70,6 +70,9 @@ let loginVue = new Vue({
             }).catch(function(ex){
                 alert('에러가 발생하였습니다. 관리자에게 문의하세요.');
             });
+        },
+        signup: function(){
+            location.href = '/signup';
         }
     }
 })

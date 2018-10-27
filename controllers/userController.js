@@ -20,18 +20,15 @@ userController.login = (req, res) => {
     }else{
         client.get(paramId, function(err, reply){
             reply = JSON.parse(reply);
-            console.log(reply);
-            console.log(paramPassword);
             if(reply && reply.password == paramPassword){
-                console.log('!');
-                if(reply.userType == 'agency'){
+                if(reply.type == 'agency'){
                     req.session.user = {
                         id: paramId,
                         type: 'agency',
                         wallet: reply.pubkey,
                         authorized: true
                     };
-                    res.status(200).json({ success: true});
+                    res.status(200).json({ success: true });
                 }else{
                     req.session.user = {
                         id: paramId,
@@ -91,7 +88,6 @@ userController.signUp = (req, res) => {
     userCreator.setData(req.body.userId, req.body.password, 
         req.body.userType, req.body.email, req.body.address, 'sdjk2ke12190u1');
     let user = userCreator.getUser();
-    console.log(user);
     client.set(userId, JSON.stringify(user), function(err, data){
         if(err){
             console.log(err);
