@@ -13,8 +13,10 @@ router.get('/', function(req, res, next) {
 router.get('/login', userController.loginPage);
 router.get('/logout', userController.logout);
 router.get('/userinfo', userController.userInfo);
+router.get('/signup', userController.signUpPage);
 
 router.post('/login', userController.login);
 router.post('/userinfo', userController.getUserInfo);
+router.post('/signup', userController.signUp);
 
 module.exports = router;

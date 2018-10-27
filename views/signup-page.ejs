@@ -1,0 +1,90 @@
+<section id="inner-headline">
+    <div class="container">
+      <div class="row">
+        <div class="span12">
+          <div class="inner-heading">
+            <h2>블록체인을 혈통서 서비스 Cuddling 가입 페이지</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+<section id="content">
+<div class="container" id="signup-container">
+<!-- Portfolio Projects -->
+<div class="row">
+<div class="span12">
+    <h4 class="heading">가입을 위한 정보를 입력하세요</h4>
+    <table style="margin-left: auto; margin-right: auto;">
+        <tbody>
+            <tr>
+                <td><h6 class="span3">아이디: </h6></td>
+                <td><input type="text" v-model="userId"/></td>            
+            </tr>
+            <tr>
+                <td><h6 class="span3">패스워드: </h6></td>
+                <td><input type="password" v-model="password"/></td>            
+            </tr>
+            <tr>
+                <td><h6 class="span3">이메일: </h6></td>
+                <td><input type="email" v-model="email"/></td>            
+            </tr>
+            <tr>
+                <td><h6 class="span3">사용자 타입 </h6></td>
+                <td>
+                    <input type="radio" id="general" value="general" v-model="userType">
+                    <label for="general">일반회원</label><br>
+                    <input type="radio" id="agency" value="agency" v-model="userType">
+                    <label for="agency">기관회원 (기관회원은 기관주소를 입력하세요)</label>
+                    기관주소: <input type="text" v-model="address"/>
+                </td>            
+            </tr>
+        </tbody>
+    </table>
+   <center>
+       <button class="btn btn-large btn-theme btn-rounded" v-on:click="signUp">회원가입</button>
+    </center>        
+</div>
+</div>
+<!-- End Portfolio Projects -->
+<!-- divider -->
+<div class="row">
+<div class="span12">
+    <div class="solidline">
+    </div>
+</div>
+</div>
+</section>
+
+<script type="text/javascript">
+let signupVue = new Vue({
+    el: "#signup-container",
+    data: {
+        userId: '',
+        password: '',
+        email: '',
+        userType: 'general',
+        address: ''
+    },
+    mounted: function(){
+
+    },
+    methods: {
+        signUp: function(){
+            // 등록
+            axios.post('/signup', {
+                userId: this.userId,
+                password: this.password,
+                userType: this.userType,
+                email: this.email,
+                address: this.address
+            }).then(function(result){
+                alert('회원가입이 완료되었습니다. 로그인을 해주세요')
+                location.href = '/login';
+            }).catch(function(ex){
+                alert('에러가 발생하였습니다. 관리자에게 문의하세요.');
+            });
+        }
+    }
+})
+</script>

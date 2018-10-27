@@ -8,6 +8,8 @@ var router = express.Router();
 router.get('/', registController.main);
 router.get('/page1', registController.page1);
 router.get('/pet', registController.registPetPage);
+router.get('/dna', registController.registDnaPage);
 router.get('/thanks', registController.registThanksPage);
+router.get('/agencylist', registController.getAgencyList);
 
 module.exports = router;
