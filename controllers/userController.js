@@ -88,7 +88,7 @@ userController.signUpPage = (req, res) => {
 userController.signUp = (req, res) => {
     let userId = req.body.userId;
     userCreator.setData(req.body.userId, req.body.password, 
-        req.body.userType, req.body.email, req.body.address, 'sdjk2ke12190u1');
+        req.body.userType, req.body.email, req.body.address, 's2d1df1wrj293e4u2e22f259jk2ke12198gwj38i0u1=');
     let user = userCreator.getUser();
     client.set(userId, JSON.stringify(user), function(err, data){
         if(err){
