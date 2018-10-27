@@ -74,11 +74,6 @@
         },
         methods: {
             getDNA: function(index){
-                if(this.requestUsers[index].dogDna == ''){
-                    alert('DNA 정보를 불러오세요');
-                    return;
-                }
-
                 axios.get('/company/userdna')
                 .then(function(result){
                     companyRegistVue.requestUsers[index].dogDna = result.data;
@@ -87,6 +82,11 @@
                 });
             },
             registDNA: function(index){
+                if(this.requestUsers[index].dogDna == ''){
+                    alert('DNA 정보를 불러오세요');
+                    return;
+                }
+
                 axios.post('/company/regist/dna', {
                     userInfo: this.requestUsers[index],
                 }).then(function(result){
