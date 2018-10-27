@@ -26,6 +26,10 @@
                 <td><label>{{ userType }}</label></td>            
             </tr>
             <tr>
+                <td><h6 class="span3">이메일: </h6></td>
+                <td><label>{{ email }}</label></td>            
+            </tr>    
+            <tr>
                 <td><h6 class="span3">지갑키: </h6></td>
                 <td><label>{{ walletKey }}</label></td>            
             </tr>    
@@ -53,7 +57,8 @@ let userInfoVue = new Vue({
     data: {
         userId: '',
         userType: '',
-        walletKey: ''
+        walletKey: '',
+        email: ''
     },
     mounted: function(){
         axios.post('/userinfo')
@@ -62,6 +67,7 @@ let userInfoVue = new Vue({
                 userInfoVue.userId = result.data.id;
                 userInfoVue.userType = (result.data.type === "agency")? "기관회원":"일반회원";
                 userInfoVue.walletKey = result.data.wallet;
+                userInfoVue.email = result.data.email;
             }).catch((ex) => {
                 alert('서버에 에러가 발생하였습니다.');
             });
