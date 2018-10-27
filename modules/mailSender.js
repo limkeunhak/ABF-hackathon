@@ -25,9 +25,6 @@ mailSender.sendMail = (to, subject, text, callback) => {
             console.log("Message sent");
         }
         transforter.close();
-        if(res){
-            res.status(200);
-        }
     });    
 }
 

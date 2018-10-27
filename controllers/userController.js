@@ -26,6 +26,7 @@ userController.login = (req, res) => {
                         id: paramId,
                         type: 'agency',
                         wallet: reply.pubkey,
+                        email: reply.email,
                         authorized: true
                     };
                     res.status(200).json({ success: true });
@@ -34,6 +35,7 @@ userController.login = (req, res) => {
                         id: paramId,
                         type: 'user',
                         wallet: reply.pubkey,
+                        email: reply.email,
                         authorized: true
                     }
                     res.status(200).json({ success: true });

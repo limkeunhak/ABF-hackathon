@@ -68,6 +68,7 @@ registController.registDna = (req, res) => {
     client.get(req.session.user.id, function(err, reply){
         let request = {
             generalUserId: req.session.user.id,
+            generalUserEmail: req.session.user.email,
             agencyUserId: req.body.agencyUserId,
             dogDna: '',
             isDone: false,
