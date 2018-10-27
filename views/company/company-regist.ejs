@@ -1,0 +1,96 @@
+<section id="inner-headline">
+        <div class="container">
+          <div class="row">
+            <div class="span4">
+              <div class="inner-heading">
+                <h2>반려견 DNA 등록</h2>
+              </div>
+            </div>
+            <div class="span8">
+              <ul class="breadcrumb">
+                <li><a href="#"><i class="icon-home"></i></a><i class="icon-angle-right"></i></li>
+                <li><a href="#">위탁기관전용</a><i class="icon-angle-right"></i></li>
+                <li class="active">반려견 DNA 등록</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+<section id="content">
+<div class="container" id="company-regist-container">
+    <!-- Portfolio Projects -->
+    <div class="row">
+    <div class="span12">
+        <h4 class="heading">채취된 반려견 <strong>DNA</strong> 정보 입력</h4>
+        <div class="row">
+            <div class="form-inline span12">
+                <label class="mr-4">반려견 DNA 정보 입력</label>
+                <input type="text" v-model="dna"/>
+                <button class="btn btn-small btn-theme btn-rounded" v-on:click="getDNA">dna 가져오기</button>        
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-inline span12">
+                <label> 유저 계정 입력</label>
+                <input type="text" v-model="userId"/>
+            </div>
+        </div>        
+        <button class="btn btn-large btn-theme btn-rounded" v-on:click="registDNA">등록하기</button>        
+    </div>
+    </div>
+    <!-- End Portfolio Projects -->
+    <!-- divider -->
+    <div class="row">
+    <div class="span12">
+        <div class="solidline">
+        </div>
+    </div>
+    </div>
+</div>
+</section>
+
+<script type="text/javascript">
+    let companyRegistVue = new Vue({
+        el: "#company-regist-container",
+        data: {
+            dna: '',
+            userId: '',
+        },
+        mounted: function(){
+
+        },
+        methods: {
+            getDNA: function(){
+                axios.get('/company/userdna')
+                .then(function(result){
+                    companyRegistVue.dna = result.data;
+                }).catch(function(ex){
+                    alert('ㅎㅎㅎ 에러네용?');
+                });
+            },
+            registDNA: function(){
+                if(this.dna == ''){
+                    alert('전송할 유전자 정보를 입력하세요');
+                    return;
+                }
+
+                if(this.userId == ''){
+                    alert('사용자 계정을 입력하세요');
+                    return;
+                }
+
+                axios.post('/company/regist/dna', {
+                    userId: this.userId,
+                    dna: this.dna
+                }).then(function(result){
+                    console.log(result);
+                    alert('유전자 등록이 완료되었습니다');
+                    location.href = 'http://localhost:3000';
+                }).catch(function(ex){
+                    console.log(ex);
+                    alert('유전자 등록에 실패하였습니다');
+                })
+            }
+        }
+    })
+</script>
